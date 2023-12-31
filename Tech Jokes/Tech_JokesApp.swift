@@ -11,7 +11,7 @@ import SwiftUI
 struct Tech_JokesApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            JokeView()
         }
     }
 }
