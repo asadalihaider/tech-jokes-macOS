@@ -15,7 +15,7 @@ struct Joke: Codable {
     let joke: String
     let flag: Flag
     let id: Int
-    let safe: String
+    let safe: Bool
     let lang: String
 
     struct Flag: Codable {

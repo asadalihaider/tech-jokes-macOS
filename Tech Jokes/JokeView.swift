@@ -29,6 +29,11 @@ struct JokeView: View {
                         }
                     }
                     .pickerStyle(MenuPickerStyle())
+                    .onChange(of: jokeLanguage) { _, newValue in
+                        Task {
+                            await getJoke(newValue.language)
+                        }
+                    }
                 }
             })
             
@@ -45,6 +50,25 @@ struct JokeView: View {
             Spacer()
         }
         .padding()
+        .task {
+            await getJoke(jokeLanguage.language)
+        }
+    }
+    
+    func getJoke(_ language: String) async {
+        let url = "https://v2.jokeapi.dev/joke/Programming?type=single&lang=\(language)"
+        let apiService = APIService(urlString: url)
+        fetching.toggle()
+        defer {
+            fetching.toggle()
+        }
+        do {
+            let joke: Joke = try await apiService.getJSON()
+            jokeString = joke.joke
+        } catch {
+            print("Error: \(error)")
+            jokeString = error.localizedDescription
+        }
     }
 }
 
