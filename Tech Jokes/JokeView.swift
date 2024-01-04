@@ -46,6 +46,7 @@ struct JokeView: View {
                 Text(jokeString)
                     .minimumScaleFactor(0.5)
                     .padding(.top, 10.0)
+                    .multilineTextAlignment(.center)
             }
             Spacer()
         }
@@ -66,7 +67,6 @@ struct JokeView: View {
             let joke: Joke = try await apiService.getJSON()
             jokeString = (joke.error ? "No Joke Available" : joke.joke)!
         } catch {
-            print("Error: \(error)")
             jokeString = error.localizedDescription
         }
     }
@@ -74,5 +74,5 @@ struct JokeView: View {
 
 #Preview {
     JokeView()
-        .frame(width: 255, height: 300)
+        .frame(width: 255)
 }
