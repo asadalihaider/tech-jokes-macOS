@@ -8,22 +8,27 @@
 import Foundation
 
 struct Joke: Codable {
-    
     let error: Bool
-    let category: String
-    let type: String
-    let joke: String
-    let flag: Flag
-    let id: Int
-    let safe: Bool
-    let lang: String
+    let category: String?
+    let type: String?
+    let joke: String?
+    let flags: Flags?
+    let id: Int?
+    let safe: Bool?
+    let lang: String?
+    let internalError: Bool?
+    let code: Int?
+    let message: String?
+    let causedBy: [String]?
+    let additionalInfo: String?
+    let timestamp: Int?
+}
 
-    struct Flag: Codable {
-        let nsfw: Bool
-        let religious: Bool
-        let political: Bool
-        let racist: Bool
-        let sexist: Bool
-        let explicit: Bool
-    }
+struct Flags: Codable {
+    let nsfw: Bool?
+    let religious: Bool?
+    let political: Bool?
+    let racist: Bool?
+    let sexist: Bool?
+    let explicit: Bool?
 }
